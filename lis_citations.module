@@ -1,0 +1,84 @@
+<?php
+// $Id$
+
+//  Module: lis_citations
+
+// Sudhansu Dash
+// 2016 Jan 29
+
+
+/**
+ * Implements hook_menu().
+ */
+
+function lis_citations_menu() {
+  $items = array();
+  $items['publications/lis_citations'] = array( //this creates a URL
+    'title' => 'Publications that cite LIS NAR articles', //page title
+    'description' => 'A list of NCBI publications that cite LIS NAR articles.',
+    'page callback' => lis_citations_page_callback, //this function called when page accessed. For form, use drupal_get_form
+    //'page arguments' => array('grin_acc_query_form'), //form name here // No need if page callback fn() doesn't need it.
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function lis_citations_theme() {
+  return array(
+    'lis_citations_page_template' => array(  // this array name to be used in theme()
+    'template' => 'lis_citations_page',  //,  template file lis_citations_page.tpl.php
+    //'variables' => array(),
+    ),  //array page_template
+  );  // array return
+}    
+
+/**
+ * Implements page callback.
+ */
+
+function lis_citations_page_callback() {
+
+  //PMIDs
+  $pmid_lis_2005 = '15608283';
+  $pmid_lis_2016 = '26546515';
+
+  $db = 'pubmed';
+ 
+  $base_url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin'.'&retmode=json';
+  $url_2005_citations= $base_url.'&id='.$pmid_lis_2005;
+  $url_2016_citations= $base_url.'&id='.$pmid_lis_2016;
+  $url_2005_2016_citations= $base_url.'&id='.$pmid_lis_2016.'&id='.$pmid_lis_2005;
+
+  $json_2005_str = file_get_contents($url_2005_citations); // a string from entrez
+  //$json_2005 = json_decode($json_2005); // now a php object
+  $json_2005 = json_decode($json_2005_str, true); // now an associative array
+  $pmids_2005  = $json_2005['linksets'][0]['linksetdbs'][0]['links']; // array
+
+
+  // array name in hook_theme() that specifies page template file.
+  return theme ('lis_citations_page_template', array('pmid_lis_2005'=>$pmid_lis_2005,
+                'pmid_lis_2016'=>$pmid_lis_2016, 'url_2016_citations' =>$url_2016_citations,
+                'url_2005_citations' =>$url_2005_citations,  'json_2005_str' => $json_2005_str,
+                'json_2005' => $json_2005, 'pmids_2005'=>$pmids_2005,
+                ) ); 
+
+} //f()
+
+
+//  SCRATCH PAD
+//=============
+
+/*
+
+http://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=26546515  #2016
+http://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=15608283  #2005
+
+http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin&id=21876726&id=21876761&tool=my_tool&email=my_email@example.com
+
+ 
+*/

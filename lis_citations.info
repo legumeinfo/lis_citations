@@ -1,0 +1,10 @@
+name = lis_citations
+description = List all the NCBI publications citing LIS 2005 and 2016 NAR article.
+core = 7.x
+files[] = lis_ctations.module
+
+;package = 
+;dependencies[] = 
+;dependencies[] = 
+;files[] = 
+;configure = 
