@@ -116,8 +116,8 @@ debug vars:<br/>
 
 <!--  SCRATCH PAD  -->
 <!--
-src="http://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=26546515"  
-src="http://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=15608283
+src="https://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=26546515"  
+src="https://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=15608283
 
 -->
 

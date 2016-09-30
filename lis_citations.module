@@ -49,7 +49,7 @@ function lis_citations_page_callback() {
 
   $db = 'pubmed';
  
-  $base_url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin'.'&retmode=json';
+  $base_url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin'.'&retmode=json';
   $url_2005_citations= $base_url.'&id='.$pmid_lis_2005;
   $url_2016_citations= $base_url.'&id='.$pmid_lis_2016;
   $url_2005_2016_citations= $base_url.'&id='.$pmid_lis_2016.'&id='.$pmid_lis_2005;
@@ -75,10 +75,10 @@ function lis_citations_page_callback() {
 
 /*
 
-http://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=26546515  #2016
-http://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=15608283  #2005
+https://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=26546515  #2016
+https://www.ncbi.nlm.nih.gov/pubmed?linkname=pubmed_pubmed_citedin&from_uid=15608283  #2005
 
-http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin&id=21876726&id=21876761&tool=my_tool&email=my_email@example.com
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin&id=21876726&id=21876761&tool=my_tool&email=my_email@example.com
 
  
 */

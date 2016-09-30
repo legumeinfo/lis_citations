@@ -14,14 +14,14 @@ JS functions for the lis_citations module
 function makeEsummaryUrl (pmid){
       //Given a pmid, creates an 'esummary' url to obtain json obj of document summary
       //TODO: 
-      var esummaryUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json" + "&id=" + pmid;
+      var esummaryUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json" + "&id=" + pmid;
       return esummaryUrl;
 }  // makeEsummaryUrl
 
 
 function makeElinkCitedinUrl (pmids){
     //Given pmid(s), creates an 'elink' url to obtain json obj listing the 'cited in' pubmed Ids
-    var baseUrl = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin'+'&retmode=json';
+    var baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin'+'&retmode=json';
     var elinkCitedinUrl = baseUrl + "&id=" + pmids;
     
     return elinkCitedinUrl;
@@ -86,12 +86,12 @@ function makeHtmlFromEsummaryJson(esummaryJson) {  //NOT DONE YET winProgress
         var source = esummaryResult[uid]['source']; //console.log(source);
         var volume = esummaryResult[uid]['volume']; //console.log(volume);
         
-        var linkToUid = "<a href=\"http://www.ncbi.nlm.nih.gov/pubmed/" + uid + "\"" + "  target=\"_blank\">" + uid + "</a>";
+        var linkToUid = "<a href=\"https://www.ncbi.nlm.nih.gov/pubmed/" + uid + "\"" + "  target=\"_blank\">" + uid + "</a>";
         
         var citation = (authors.join(", ") + ". " + "<b>" + year + "</b>" + ". " + title + " " + "<strong>" + source + " " + volume +  issue + ":" + pages + "</strong>" + "." + " (" + linkToUid + ")");
         var citation_li = "<li>" + citation + "</li>"; // + "\n\n";
         //Creates like:
-        //Dash S, Campbell JD, Cannon EK, Cleary AM, ......, Farmer AD, Cannon SB. 2016. Legume information system (LegumeInfo.org): a key component of a set of federated data resources for the legume family. Nucleic Acids Res 44(D1):D1181-8. (<a href="http://www.ncbi.nlm.nih.gov/pubmed/26546515"  target="_blank">26546515</a>)
+        //Dash S, Campbell JD, Cannon EK, Cleary AM, ......, Farmer AD, Cannon SB. 2016. Legume information system (LegumeInfo.org): a key component of a set of federated data resources for the legume family. Nucleic Acids Res 44(D1):D1181-8. (<a href="https://www.ncbi.nlm.nih.gov/pubmed/26546515"  target="_blank">26546515</a>)
         //console.log("citation_li: " + citation_li); //debug
         citation_html += citation_li; 
         
@@ -190,7 +190,7 @@ function listCitingPubmedIds (ids) {
   //Given a list of pubmed ids ( coma sep), lists and makes citations html of the citing pubmed ids (via eutils elink).
   
   // Cnonstructs the elink-url
-  var baseUrl = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin'+'&retmode=json';
+  var baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&linkname=pubmed_pubmed_citedin'+'&retmode=json';
   var url = baseUrl + "&id=" + ids;
   //console.log("elink url: ",url);
   //$(selector).load(URL,data,callback);
@@ -260,7 +260,7 @@ function getDocSumAttributesFromJson (id) {
       //console.log (authorFirst + ", et al. "+ title + " " + source + " " + volume + ":");
       //console.log (authorsAll + ". "+ title + " " + source + " " + volume + ":");
       //console.log (authors.join(", ") + ". "+ title + " " + source + " " + volume + ":");
-      var linkToId = "<a href=\"http://www.ncbi.nlm.nih.gov/pubmed/" + id + "\"" + "  target=\"_blank\">" + id + "</a>";
+      var linkToId = "<a href=\"https://www.ncbi.nlm.nih.gov/pubmed/" + id + "\"" + "  target=\"_blank\">" + id + "</a>";
       var citation = (linkToId + ": " + authors.join(", ") + ". " + year + ". " + title + " " + source + " " + volume +
                       "(" + issue + ")" + ":" + pages + ".");  
       
