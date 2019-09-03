@@ -12,16 +12,16 @@
 <script  type="text/javascript"  src="/sites/all/modules/lis_citations/lis_citations.js"></script>
 
 <script  type="text/javascript">
-var json_str = <?php echo $json_2005_str; ?>;
+//var json_str = <?php echo $json_2005_str; ?>;
 //var obj = JSON.parse(json_str);
-console.log(json_str);
+//console.log(json_str);
 var url_2005 = <?php  echo json_encode($url_2005_citations); ?>;
 var pmids_2005 = <?php  echo json_encode($pmids_2005); ?>;
 //var pmids_2016 = <?php  //echo json_encode($pmids_lis_2016); ?>;
 
 var pmid_lis_2016 = <?php  echo json_encode($pmid_lis_2016); ?>;
 var pmid_lis_2005 = <?php  echo json_encode($pmid_lis_2005); ?>;
-
+console.log(pmid_lis_2016);
 //Default display:
 FillDomElementWithCitedinHtml (pmid_lis_2016 + ',' + pmid_lis_2005,'div1');
 
